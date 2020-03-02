@@ -1,0 +1,56 @@
+<select id="func" onchange = "onChangeSelect()">
+    <option value="get">get data</option>
+    <option value="load">load data</option>
+    <option value="auth">auth</option>
+</select>
+<input type="button" id="execute" value="execute" />
+</p>
+<p><textarea id='token' style = "width:880px"'>Input token</textarea></p>
+<textarea id='txtarea' style ="width:880px;height:330px;overflow:visible"></textarea>
+
+<script>
+function onChangeSelect(){
+    target = document.getElementById("func");
+    targetVal = target.options[target.selectedIndex].value
+    if(targetVal == 'auth') {
+    	document.getElementById("token").style.display = "none";
+        document.querySelector('#txtarea').value = "{\"username\":\"niceinfo\",\"password\":\"password\"}";    	
+    } else {
+    	document.getElementById("token").style.display = "";
+    	document.querySelector('#txtarea').value = "";    	    	
+    }
+}
+</script>
+
+<script>
+document.querySelector('input').addEventListener('click', function(event){
+    var xhr = new XMLHttpRequest();
+
+    target = document.getElementById("func");
+    targetVal = target.options[target.selectedIndex].value
+    if(targetVal == 'auth') {
+    	xhr.open('POST', '/authenticate');
+        var user = document.querySelector('#txtarea').value;
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(user);
+    } else if(targetVal == 'get') {
+    	xhr.open('GET', './api/data-set');
+        var tok = document.querySelector('#token').value;
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", "Bearer " + tok);
+        xhr.send();
+    } else if(targetVal == 'load') {
+    	xhr.open('POST', './api/data-set');
+        var tok = document.querySelector('#token').value;
+        var body = document.querySelector('#txtarea').value;
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", "Bearer " + tok);
+        xhr.send(body);
+    }
+    xhr.onreadystatechange = function(){
+        document.querySelector('#txtarea').value = xhr.responseText;
+    }
+    
+});
+
+</script>
