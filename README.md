@@ -61,9 +61,9 @@ $ ./authBatch.sh </br>
 $ cat token.json
 
 2. 적재 배치파일 수행 </br>
-$ ./loadBatch.sh
-$ cat loadResult.json
-- 혹시나 Heap memory 에러가 발생하면 jvm 옵션을 수정하기 위해 아래 구문 수행</br>
+$ ./loadBatch.sh </br>
+$ cat loadResult.json </br>
+  혹시나 Heap memory 에러가 발생하면 jvm 옵션을 수정하기 위해 아래 구문 수행</br>
 $ docker cp setenv.sh nice:/usr/local/tomcat/bin/setenv.sh
 
 3. 불러오기 배치파일 수행 </br>
