@@ -21,7 +21,7 @@
 - Docker Toolbox 설치 폴더 내 첨부된 war파일을 복사해둔다.
 
 ## Docker Terminal 실행
-Docker Quickstart Terminal 을 실행. 혹시나 bash를 찾거든 git bash 설치 경로를 지정.
+- Docker Quickstart Terminal 을 실행. 혹시나 bash를 찾거든 git bash 설치 경로를 지정.
 이후 입력은 터미널에서 수행.
 
 ## 이미지 다운로드
@@ -55,16 +55,17 @@ Oracle VM VirtualBox 실행 -> 설정 -> 네트워크 -> 고급 -> 포트포워�
 - Docker Toolbox 설치 폴더 내 첨부된 Json data파일(파일명을 data.json으로 변경), 배치파일, setenv 복사.
 - Docker Quickstart Terminal 을 실행.
 
-### 인증 배치파일 수행
-$ ./authBatch.sh
+### 시나리오
+1. 인증 배치파일 수행 </br>
+$ ./authBatch.sh </br>
 $ cat token.json
 
-### 적재 배치파일 수행
+2. 적재 배치파일 수행 </br>
 $ ./loadBatch.sh
 $ cat loadResult.json
 - 혹시나 Heap memory 에러가 발생하면 jvm 옵션을 수정하기 위해 아래 구문 수행</br>
 $ docker cp setenv.sh nice:/usr/local/tomcat/bin/setenv.sh
 
-### 불러오기 배치파일 수행 
-$ ./getBatch.sh
+3. 불러오기 배치파일 수행 </br>
+$ ./getBatch.sh </br>
 $ cat getResult.json
